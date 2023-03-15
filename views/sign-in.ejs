@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - MixMeet</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./images/favicon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <header>
+      <img src="./images/logo.png" alt="mixmeet logo" class="logo" />
+      <nav>
+        <a href="/">Home</a>
+        <a href="/sign-in">Sign In</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Sign In</h1>
+      <form action="/sign-in" method="post">
+        <input type="email" name="email" id="email" />
+        <input type="password" name="password" id="password" />
+        <input type="submit" value="sign in" />
+      </form>
+    </main>
+    <footer>&copy; MixMeet @ <%=new Date().getFullYear() %></footer>
+  </body>
+</html>
