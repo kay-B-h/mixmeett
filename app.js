@@ -1,15 +1,16 @@
 const express = require("express");
-// const mysql = require("mysql");
-//require("./")
+const bcrypt = require("bcrypt");
+
 const favicon = require("serve-favicon");
 
 const app = express();
-// const db = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database: "mixmeet",
-// });
+const mysql = require("mysql");
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "mixmeet",
+});
 
 // db.connect((err) => {
 //   if (err) {
@@ -22,6 +23,8 @@ require("./services/main");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
+
 app.use(favicon(__dirname + "/public/images/favicon.png"));
 console.log(__dirname);
 
@@ -31,10 +34,96 @@ app.get("/", (req, res) => {
 app.get("/sign-in", (req, res) => {
   res.render("sign-in");
 });
+app.post("/sign-in", (req, res) => {
+  //confirm that  theemail is registered
+  //compare password provided with the hash  in db
+  db.query(
+    "SELECT email,password FROM USERS WHERE email = ?",
+    [req.body.email],
+    (err, result) => {
+      //handle error
+      if (result.length > 0) {
+        //proceed
+        bcrypt.compare(req.body.password, result[0].password, (err, match) => {
+          if (match) {
+            res.redirect("/");
+          } else {
+            res.render("sign-in", {
+              error: true,
+              errorMessage: "Incorrect password",
+            });
+          }
+        });
+      } else {
+        res.render("sign-in", {
+          error: true,
+          errorMessage: "Email not registered",
+        });
+      }
+    }
+  );
+});
+
 app.get("/sign-up", (req, res) => {
   res.render("sign-up");
 });
+app.post("/sign-up", (req, res) => {
+  //get data - body-passer
+  //check if confirm password is same as password
+  //check if email is already in use/existing
+  // encrypt password/ create hash
+  //store all details in database- insert statement
+  console.log(req.body);
+  if (req.body.password === req.body.confirm) {
+    //proceed
+    db.query(
+      "SELECT email FROM users WHERE email = ?",
+      [req.body.email],
+      (err, results) => {
+        if (results.length > 0) {
+          //email already in use
+          res.render("sign-up", {
+            error: true,
+            errorMessage: "Email already in use.use another or login",
+          });
+        } else {
+          //proceed
+          bcrypt.hash(req.body.password, 4, function (err, hash) {
+            //we have access to hashed password
+            db.query(
+              "INSERT INTO users(username, email, password, img_link, bio) values(?,?,?,?,?) ",
+              [
+                req.body.username,
+                req.body.email,
+                hash,
+                "image.png",
+                req.body.bio,
+              ],
+              (error) => {
+                //end
+                if (error) {
+                  res.render("sign-up", {
+                    error: true,
+                    errorMessage: "Something went wrong",
+                  });
+                } else {
+                  res.redirect("/sign-in");
+                }
+              }
+            );
+          });
+        }
+      }
+    );
 
+    //successfull signup
+  } else {
+    res.render("sign-up", {
+      error: true,
+      errorMessage: "Passwords do not match",
+    });
+  }
+});
 app.listen(3001, () => {
   console.log("app running!!!");
 });
