@@ -1,0 +1,151 @@
+/* header */
+
+.current-username {
+  font-size: 20px;
+}
+
+.current-user-nav-btn {
+  height: 40px;
+  width: 40px;
+  background: transparent;
+  border: none;
+  position: relative;
+}
+.current-user-nav-btn img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border: 50%;
+}
+.notification-count-main {
+  background-color: orangered;
+  color: white;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  padding-top: 3px;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+}
+.main-nav {
+  position: relative;
+}
+
+.user-modal {
+  /* display: none; */
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  gap: 10px;
+  width: max-content;
+  background-color: white;
+}
+.user-modal.hide {
+  display: none;
+}
+.user-modal a {
+  color: #0b2249;
+}
+.user-modal p {
+  font-weight: bold;
+  color: blue;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.notification-count-messages {
+  color: red;
+  padding-left: 16px;
+}
+/* css variables */
+.user-modal .sign-out-btn {
+  display: block;
+  width: 100%;
+  color: white;
+  background-color: #32a9fb;
+  border-radius: 5px;
+}
+
+/* main */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+}
+/* page-title */
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+.new-post {
+  background: transparent;
+  border: #0b2249 solid;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+/* new post form */
+.new-post-form {
+  display: flex;
+  justify-content: space-between;
+}
+.new-post-form.hide {
+  display: none;
+}
+/* .new-post-form input[type="file"] {
+}
+.new-post-form input[type="submit"] {
+} */
+/* post  */
+.post {
+  text-align: left;
+  background-color: rgb(211, 230, 236);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.post-header {
+  display: flex;
+  padding: 16px;
+  gap: 16px;
+}
+.post-owner-image {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+.post-owner-title {
+  color: gray;
+}
+.post-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+/* footer */
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  align-items: center;
+  width: 100%;
+}
+.post-footer-icons {
+  display: flex;
+  gap: 5px;
+  height: 20px;
+  align-items: end;
+}
+.post-footer-icons img {
+  height: 100%;
+}
+.notification-count {
+  color: orangered;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 15px;
+}

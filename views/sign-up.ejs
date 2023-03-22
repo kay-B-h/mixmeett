@@ -20,18 +20,18 @@
       <% if(locals.error){ %>
       <p style="color: orangered"><%=errorMessage%></p>
       <% } %>
-      <form action="/sign-up" method="post">
+      <form action="/sign-up" method="post" enctype="multipart/form-data">
         <label for="username">Username</label>
-        <input type="text" name="username" id="username" />
+        <input type="text" name="username" id="username" required />
 
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" />
+        <input type="email" name="email" id="email" required />
         <label for="password">password</label>
-        <input type="password" name="password" id="password" />
+        <input type="password" name="password" id="password" required />
         <label for="confirm">Confirm Password</label>
-        <input type="password" name="confirm" id="confirm" />
+        <input type="password" name="confirm" id="confirm" required />
         <label for="image"> Profie Image</label>
-        <input type="file" name="image" id="image" />
+        <input type="file" name="image" id="image" required />
         <label for="bio">Biogaphy / About</label>
         <textarea name="bio" id="bio" cols="30" rows="10"></textarea>
 

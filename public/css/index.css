@@ -25,6 +25,11 @@ label {
 label {
   text-align: left;
 }
+/* utlity classes */
+.hide {
+  display: none;
+}
+
 /* body */
 body {
   font-family: sans-serif;
@@ -33,13 +38,14 @@ body {
   flex-direction: column;
   text-align: center;
   justify-content: space-between;
+  color: #0b2249;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 100px;
 }
 header img {
   height: 100px;
@@ -62,4 +68,11 @@ header nav a:hover {
   padding: 0px 50px;
   max-width: 600px;
   margin: 0px auto;
+}
+
+/* footer */
+footer {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 20px 0px;
 }
